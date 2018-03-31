@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "298150816261",
+    "firebase_url": "https://compass-9e4d5.firebaseio.com",
+    "project_id": "compass-9e4d5",
+    "storage_bucket": "compass-9e4d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:298150816261:android:4f0e8144a9ce80b0",
+        "android_client_info": {
+          "package_name": "zna.online.compass"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "298150816261-3mnkjr145eajg7uqdea4f7gq4lbn9rt6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "zna.online.compass",
+            "certificate_hash": "c126420d8aa11ab97203964f9174d4b04ed1b6cc"
+          }
+        },
+        {
+          "client_id": "298150816261-6jkndjrpkf16gbpubj8msgpm2one56pd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbsMVi4fZvnQ7FEDpdCn5AOME52BJMgLQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "298150816261-6jkndjrpkf16gbpubj8msgpm2one56pd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
