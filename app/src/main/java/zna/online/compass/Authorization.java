@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,6 +36,11 @@ public class Authorization extends AppCompatActivity {
                 // ...
             }
         };
+    }
+
+    public void CreateUser()
+    {
+        String email = "adsgfdsf", password = "adgfdfrgsae";
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -45,16 +51,15 @@ public class Authorization extends AppCompatActivity {
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
-                            Toast.makeText(EmailPasswordActivity.this, R.string.auth_failed,
-                                    Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(EmailPasswordActivity.this, R.string.auth_failed,
+//                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "auth_failed", Toast.LENGTH_SHORT).show();
                         }
 
                         // ...
                     }
                 });
     }
-
-
 
     @Override
     public void onStart() {
