@@ -20,7 +20,7 @@ public class SignInEmailActivity extends AppCompatActivity implements View.OnCli
 
     private AutoCompleteTextView emailAutoCompleteTextView;
     private EditText passwordEditText;
-    private Button signupButton;
+    private Button signinButton;
     private ProgressDialog progressDialog;
 
     private FirebaseAuth firebaseAuth;
@@ -35,9 +35,9 @@ public class SignInEmailActivity extends AppCompatActivity implements View.OnCli
         progressDialog = new ProgressDialog(this);
         emailAutoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.email);
         passwordEditText = (EditText) findViewById(R.id.password);
-        signupButton = (Button) findViewById(R.id.email_sign_up_button);
+        signinButton = (Button) findViewById(R.id.email_sign_in_button);
 
-        signupButton.setOnClickListener(this);
+        signinButton.setOnClickListener((View.OnClickListener) (this));
     }
 
     private void registerUser()
@@ -84,7 +84,7 @@ public class SignInEmailActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        if (v == signupButton)
+        if (v == signinButton)
         {
             registerUser();
         }

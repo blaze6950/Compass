@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"    
-    android:theme="@android:style/Theme.Black.NoTitleBar"
+
     tools:context="zna.online.compass.Authorization"
     tools:layout_editor_absoluteY="25dp"
     tools:layout_editor_absoluteX="0dp">
+    <!--android:theme="@android:style/Theme.Black.NoTitleBar"-->
 
     <ImageView
         android:id="@+id/imageViewFon"
@@ -51,6 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
+            android:onClick="onClick"
             android:text="Вход" />
 
         <Button
@@ -60,6 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
+            android:onClick="onClick"
             android:text="Регистрация" />
     </LinearLayout>
 

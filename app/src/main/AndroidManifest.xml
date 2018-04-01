@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <user-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -14,15 +15,23 @@
         android:roundIcon="@mipmap/ic_launcher_round_compass"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Authorization">
+        <activity android:name=".Authorization" android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpEmailActivity" />
-        <activity android:name=".SignInEmailActivity"></activity>
+        <activity android:name=".SignUpEmailActivity" android:theme="@style/AppThemeWithActionBar" android:label="Sign up">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="zna.online.compass.Authorization" />
+        </activity>
+        <activity android:name=".SignInEmailActivity" android:theme="@style/AppThemeWithActionBar" android:label="Sign in">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="zna.online.compass.Authorization" />
+        </activity>
     </application>
 
 </manifest>
