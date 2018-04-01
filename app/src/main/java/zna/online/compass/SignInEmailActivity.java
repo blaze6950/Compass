@@ -1,6 +1,7 @@
 package zna.online.compass;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,25 +24,28 @@ public class SignInEmailActivity extends AppCompatActivity implements View.OnCli
     private EditText passwordEditText;
     private Button signinButton;
     private ProgressDialog progressDialog;
+    private TextView textViewSignIn;
 
-    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_email);
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
         progressDialog = new ProgressDialog(this);
         emailAutoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.email);
         passwordEditText = (EditText) findViewById(R.id.password);
         signinButton = (Button) findViewById(R.id.email_sign_in_button);
+        textViewSignIn = (TextView) findViewById(R.id.textViewSignIn);
 
         signinButton.setOnClickListener((View.OnClickListener) (this));
+        textViewSignIn.setOnClickListener((View.OnClickListener) (this));
     }
 
-    private void registerUser()
+    private void userLogin()
     {
         String email = emailAutoCompleteTextView.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
@@ -62,31 +67,32 @@ public class SignInEmailActivity extends AppCompatActivity implements View.OnCli
         }
         //if validating ok
         //we will first show a progressDialog
-        progressDialog.setMessage("Sign up...");
+        progressDialog.setMessage("Sign in...");
         progressDialog.show();
 
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful())
-                        {
-                            //user is successfully registered and logged in
-                            // we will start the profile activity here
-                            // right now lets display a toast only
-                            Toast.makeText(SignInEmailActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(SignInEmailActivity.this, "Could not register. Please, try again", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                progressDialog.cancel();
+                if (task.isSuccessful())
+                {
+                    Toast.makeText(getApplicationContext(), "Sign in successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(SignInEmailActivity.this, MainMenuActivity.class));
+                }else{
+                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
     public void onClick(View v) {
         if (v == signinButton)
         {
-            registerUser();
+            userLogin();
+        }else if (v == textViewSignIn){
+            startActivity(new Intent(SignInEmailActivity.this, SignUpEmailActivity.class));
         }
+
     }
 }

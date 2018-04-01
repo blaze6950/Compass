@@ -1,6 +1,7 @@
 package zna.online.compass;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -9,12 +10,14 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
 public class SignUpEmailActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -22,6 +25,7 @@ public class SignUpEmailActivity extends AppCompatActivity implements View.OnCli
     private EditText passwordEditText;
     private Button signupButton;
     private ProgressDialog progressDialog;
+    private TextView textViewSignUp;
 
     private FirebaseAuth mAuth;
 
@@ -36,8 +40,10 @@ public class SignUpEmailActivity extends AppCompatActivity implements View.OnCli
         emailAutoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.email);
         passwordEditText = (EditText) findViewById(R.id.password);
         signupButton = (Button) findViewById(R.id.email_sign_up_button);
+        textViewSignUp = (TextView) findViewById(R.id.textViewSignUp);
 
         signupButton.setOnClickListener((View.OnClickListener)(this));
+        textViewSignUp.setOnClickListener((View.OnClickListener)(this));
     }
 
     private void registerUser()
@@ -95,7 +101,12 @@ public class SignUpEmailActivity extends AppCompatActivity implements View.OnCli
                 {
                     Toast.makeText(getApplicationContext(), "User registered successfully", Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(getApplicationContext(), "User registered error", Toast.LENGTH_SHORT).show();
+                    if (task.getException() instanceof FirebaseAuthUserCollisionException)
+                    {
+                        Toast.makeText(getApplicationContext(), "You are already registered", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -106,6 +117,9 @@ public class SignUpEmailActivity extends AppCompatActivity implements View.OnCli
         if (v == signupButton)
         {
             registerUser();
+        }else if (v == textViewSignUp)
+        {
+            startActivity(new Intent(SignUpEmailActivity.this, SignInEmailActivity.class));
         }
     }
 }

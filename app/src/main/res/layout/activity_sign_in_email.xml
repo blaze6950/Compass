@@ -8,6 +8,7 @@
     tools:context="zna.online.compass.SignInEmailActivity">
 
     <!-- Login progress -->
+
     <ImageView
         android:id="@+id/imageViewFon"
         android:layout_width="wrap_content"
@@ -16,7 +17,9 @@
         android:scaleType="centerCrop"
         android:visibility="visible"
         app:srcCompat="@drawable/fon"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp" />
 
     <ProgressBar
         android:id="@+id/login_progress"
@@ -105,6 +108,15 @@
                 android:text="Sign in"
                 android:textStyle="bold"
                 tools:text="Sign in" />
+
+            <TextView
+                android:id="@+id/textViewSignIn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Don't have account? Sign up"
+                android:textAlignment="center"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="0dp" />
 
         </LinearLayout>
     </ScrollView>

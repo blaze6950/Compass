@@ -106,6 +106,13 @@
                 android:textStyle="bold"
                 tools:text="Sign up" />
 
+            <TextView
+                android:id="@+id/textViewSignUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Already have an account? Sign in"
+                android:textAlignment="center" />
+
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
