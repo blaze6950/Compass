@@ -4,8 +4,8 @@
 
     <color name="colorPrimary">#FFC107</color>
     <color name="colorLightPrimary">#FFECB3</color>
-    <color name="colorDarkPrimary">#FFA000</color>
-    <color name="colorAccent">#00BCD4</color>
+    <color name="colorPrimaryDark">#FFA000</color>
+    <color name="colorAccent">#00bcd4</color>
     <color name="colorWhiteTextAndIcons">#FFFFFF</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#757575</color>
@@ -14,8 +14,6 @@
     <color name="colorBadMark">#F44336</color>
     <color name="colorGoodMark">#FDD835</color>
     <color name="colorBestMark">#4CAF50</color>
-
-    <color name="colorPrimaryDark">#303F9F</color>
 
     <!--<color name="colorAccent">#FF4081</color>-->
     <!--<color name="colorPrimary">#3F51B5</color>-->
