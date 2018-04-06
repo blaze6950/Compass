@@ -72,7 +72,7 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:onClick="onClick"
-                android:text="Вход"
+                android:text="@string/title_sign_in"
                 tools:layout_editor_absoluteX="31dp"
                 tools:layout_editor_absoluteY="274dp" />
 
@@ -84,7 +84,7 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:onClick="onClick"
-                android:text="Регистрация"
+                android:text="@string/title_sign_up"
                 tools:layout_editor_absoluteX="195dp"
                 tools:layout_editor_absoluteY="274dp" />
         </LinearLayout>

@@ -25,4 +25,8 @@
     <string name="title_events">События</string>
     <string name="title_leaders">Лидеры</string>
     <string name="title_profile">Профиль</string>
+
+    <!--Authorization activity strings-->
+    <string name="title_sign_in">Вход</string>
+    <string name="title_sign_up">Регистрация</string>
 </resources>
