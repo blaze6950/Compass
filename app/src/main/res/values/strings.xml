@@ -19,7 +19,10 @@
     <string name="facebook_login_protocol_scheme" translatable="false">fbYOUR_APP_ID</string>
     <string name="title_activity_sign_up_email">Sign up</string>
     <string name="title_activity_main_menu">MainMenuActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+
+    <!--Navigation bar on main activity-->
+    <string name="title_places">Места</string>
+    <string name="title_events">События</string>
+    <string name="title_leaders">Лидеры</string>
+    <string name="title_profile">Профиль</string>
 </resources>
