@@ -30,7 +30,7 @@
         <activity
             android:name=".SignUpEmailActivity"
             android:label="Sign up"
-            android:theme="@style/AppThemeWithActionBar">
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="zna.online.compass.Authorization" />
@@ -46,6 +46,10 @@
         <activity
             android:name=".MainMenuActivity"
             android:label="@string/title_activity_main_menu"/>
+        <activity
+            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
     </application>
 
 </manifest>

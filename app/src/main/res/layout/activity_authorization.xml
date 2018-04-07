@@ -55,6 +55,7 @@
             android:layout_width="288dp"
             android:layout_height="44dp"
             android:onClick="onClick"
+            android:visibility="visible"
             tools:layout_editor_absoluteY="80dp">
 
         </com.google.android.gms.common.SignInButton>
