@@ -32,7 +32,6 @@ public class SignInEmailActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_email);
-
         mAuth = FirebaseAuth.getInstance();
 
         progressDialog = new ProgressDialog(this);

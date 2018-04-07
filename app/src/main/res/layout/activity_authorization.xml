@@ -74,7 +74,8 @@
                 android:onClick="onClick"
                 android:text="@string/title_sign_in"
                 tools:layout_editor_absoluteX="31dp"
-                tools:layout_editor_absoluteY="274dp" />
+                tools:layout_editor_absoluteY="274dp"
+                tools:text="@string/title_sign_in" />
 
             <Button
                 android:id="@+id/sign_up_button"
@@ -86,7 +87,8 @@
                 android:onClick="onClick"
                 android:text="@string/title_sign_up"
                 tools:layout_editor_absoluteX="195dp"
-                tools:layout_editor_absoluteY="274dp" />
+                tools:layout_editor_absoluteY="274dp"
+                tools:text="@string/title_sign_up" />
         </LinearLayout>
 
     </LinearLayout>
