@@ -17,9 +17,7 @@
         android:scaleType="centerCrop"
         android:visibility="visible"
         app:srcCompat="@drawable/fon"
-        tools:ignore="ContentDescription"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:ignore="ContentDescription" />
 
     <ProgressBar
         android:id="@+id/login_progress"

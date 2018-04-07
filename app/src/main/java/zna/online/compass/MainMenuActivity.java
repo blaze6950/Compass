@@ -25,7 +25,7 @@ public class MainMenuActivity extends AppCompatActivity {
                 case R.id.navigation_leaders:
                     //mTextMessage.setText(R.string.title_leaders);
                     return true;
-                case R.id.navigation_profile:
+                //case R.id.navigation_profile_info:
                     //mTextMessage.setText(R.string.title_profile);
             }
             return false;
@@ -38,8 +38,10 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+
         //mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationViewHelper.removeShiftMode(navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 

@@ -15,8 +15,8 @@
         completions."
     </string>
     <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
-    <string name="facebook_application_id" translatable="false">YOUR_APP_ID</string>
-    <string name="facebook_login_protocol_scheme" translatable="false">fbYOUR_APP_ID</string>
+    <string name="facebook_app_id">237662090137049</string>
+    <string name="fb_login_protocol_scheme">fb237662090137049</string>
     <string name="title_activity_sign_up_email">Sign up</string>
     <string name="title_activity_main_menu">MainMenuActivity</string>
 

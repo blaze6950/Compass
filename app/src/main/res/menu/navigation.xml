@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/navigation_places"
@@ -15,9 +16,8 @@
         android:id="@+id/navigation_leaders"
         android:icon="@drawable/ic_navigation_bar_crown"
         android:title="@string/title_leaders" />
-
     <item
-        android:id="@+id/navigation_profile"
+        android:id="@+id/navigation_placess"
         android:icon="@drawable/ic_navigation_bar_account"
         android:title="@string/title_profile" />
 

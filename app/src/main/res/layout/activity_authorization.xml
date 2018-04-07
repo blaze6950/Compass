@@ -56,21 +56,33 @@
             android:layout_height="44dp"
             android:onClick="onClick"
             android:visibility="visible"
-            tools:layout_editor_absoluteY="80dp">
+            tools:layout_editor_absoluteY="80dp"></com.google.android.gms.common.SignInButton>
 
-        </com.google.android.gms.common.SignInButton>
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/sign_in_button_facebook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:padding="10dp"
+            android:paddingBottom="12dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="0dp"
+            android:paddingTop="10dp"
+            android:visibility="visible"
+            tools:layout_editor_absoluteY="80dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/sign_in_button"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="150dp"
-                android:layout_height="48dp"
-                android:layout_margin="5dp"
+                android:layout_height="44dp"
+                android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:onClick="onClick"
                 android:text="@string/title_sign_in"
@@ -82,8 +94,8 @@
                 android:id="@+id/sign_up_button"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="150dp"
-                android:layout_height="48dp"
-                android:layout_margin="5dp"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:onClick="onClick"
                 android:text="@string/title_sign_up"
