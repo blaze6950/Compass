@@ -19,8 +19,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="E:\GoogleDrive\CompassProject\Oleg\02-main-screen\source\account\drawable-xxxhdpi\ic_account_grey600_48dp.png" />
-                                      <entry key="outputName" value="ic_navigation_bar_account" />
+                                      <entry key="imageAsset" value="E:\GoogleDrive\CompassProject\Oleg\02-main-screen\source\lightning\drawable-xxxhdpi\lightning.png" />
+                                      <entry key="outputName" value="ic_main_meny_lightning" />
                                     </map>
                                   </option>
                                 </PersistentState>

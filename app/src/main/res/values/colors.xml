@@ -6,7 +6,7 @@
     <color name="colorLightPrimary">#FFECB3</color>
     <color name="colorPrimaryDark">#FFA000</color>
     <color name="colorAccent">#00bcd4</color>
-    <color name="colorWhiteTextAndIcons">#FFFFFF</color>
+    <color name="colorWhiteTextAndIcons">#ffffff</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#757575</color>
     <color name="colorDevided">#BDBDBD</color>
