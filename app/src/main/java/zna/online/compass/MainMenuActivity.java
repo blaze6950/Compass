@@ -1,5 +1,6 @@
 package zna.online.compass;
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -8,7 +9,7 @@ import android.view.MenuItem;
 
 public class MainMenuActivity extends AppCompatActivity {
 
-    //private TextView mTextMessage;
+    FragmentTransaction fTrans;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -17,21 +18,55 @@ public class MainMenuActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_places:
-                    //mTextMessage.setText(R.string.title_places);
+                    loadPlaces();
                     return true;
                 case R.id.navigation_events:
-                    //mTextMessage.setText(R.string.title_events);
+                    loadEvents();
                     return true;
                 case R.id.navigation_leaders:
-                    //mTextMessage.setText(R.string.title_leaders);
+                    loadLeaders();
                     return true;
-                //case R.id.navigation_profile_info:
-                    //mTextMessage.setText(R.string.title_profile);
+                case R.id.navigation_profile_view:
+                    loadProfile();
+                    return true;
             }
             return false;
         }
 
     };
+
+    private void loadProfile() {
+        LeadersFragment fragment = LeadersFragment.newInstance("first test", "leaders");
+        fTrans = getFragmentManager().beginTransaction();
+        fTrans.replace(R.id.content, fragment);
+        fTrans.commit();
+    }
+
+    private void loadLeaders() {
+        LeadersFragment fragment = LeadersFragment.newInstance("first test", "leaders");
+        fTrans = getFragmentManager().beginTransaction();
+        fTrans.replace(R.id.content, fragment);
+        fTrans.commit();
+    }
+
+    private void loadEvents() {
+        EventsFragment fragment = EventsFragment.newInstance("first test", "events");
+        fTrans = getFragmentManager().beginTransaction();
+        fTrans.replace(R.id.content, fragment);
+        fTrans.commit();
+    }
+
+    private void loadPlaces() {
+        PlacesFragment fragment = PlacesFragment.newInstance("first test", "places");
+        fTrans = getFragmentManager().beginTransaction();
+        fTrans.replace(R.id.content, fragment);
+        fTrans.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +78,11 @@ public class MainMenuActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         BottomNavigationViewHelper.removeShiftMode(navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        if (savedInstanceState == null) {
+
+            loadPlaces();
+        }
     }
 
 }

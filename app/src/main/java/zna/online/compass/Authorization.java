@@ -1,9 +1,14 @@
 package zna.online.compass;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -31,6 +36,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class Authorization extends AppCompatActivity implements View.OnClickListener{
 
     //Google auth
@@ -43,6 +51,7 @@ public class Authorization extends AppCompatActivity implements View.OnClickList
 
     private GoogleSignInClient mGoogleSignInClient;
     private SignInButton gSignInButton;
+    private ProgressDialog progressDialog;
 
     //Facebook auth
     private static final String TAGF = "FacebookLogin";
@@ -64,6 +73,7 @@ public class Authorization extends AppCompatActivity implements View.OnClickList
         FirebaseApp.initializeApp(this);
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_authorization);
+        progressDialog = new ProgressDialog(this);
         gSignInButton = (SignInButton) findViewById(R.id.sign_in_button_google);
         gSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,20 +110,33 @@ public class Authorization extends AppCompatActivity implements View.OnClickList
             @Override
             public void onCancel() {
                 Log.d(TAGF, "facebook:onCancel");
-                // [START_EXCLUDE]
-                //updateUI(null);
-                // [END_EXCLUDE]
+                Toast.makeText(getApplicationContext(), "facebook:onCancel ", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onError(FacebookException error) {
                 Log.d(TAGF, "facebook:onError", error);
-                // [START_EXCLUDE]
-                //updateUI(null);
-                // [END_EXCLUDE]
+                Toast.makeText(getApplicationContext(), "facebook:onError: " + error, Toast.LENGTH_LONG).show();
             }
         });
         // [END initialize_fblogin]
+
+        //Getting hashcode
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(
+                    "zna.online.compass",
+                    PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                String hashCode = Base64.encodeToString(md.digest(), Base64.DEFAULT);
+                Log.d("KeyHash:", hashCode);
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+
+        } catch (NoSuchAlgorithmException e) {
+
+        }
     }
 
     @Override
@@ -156,21 +179,21 @@ public class Authorization extends AppCompatActivity implements View.OnClickList
     // [START auth_with_google]
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
-        // [START_EXCLUDE silent]
-        //showProgressDialog();
-        // [END_EXCLUDE]
+        progressDialog.setMessage("Log in...");
+        progressDialog.show();
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        progressDialog.cancel();
                         if (task.isSuccessful()) {
 //                            // Sign in success, update UI with the signed-in user's information
 //                            Log.d(TAG, "signInWithCredential:success");
 //                            FirebaseUser user = mAuth.getCurrentUser();
 //                            updateUI(user);
-                                startActivity(new Intent(Authorization.this, MainMenuActivity.class));
+                            startActivity(new Intent(Authorization.this, MainMenuActivity.class));
                         } else {
 //                            // If sign in fails, display a message to the user.
 //                            Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -195,15 +218,15 @@ public class Authorization extends AppCompatActivity implements View.OnClickList
 
     private void handleFacebookAccessToken(AccessToken token) {
         Log.d(TAGF, "handleFacebookAccessToken:" + token);
-        // [START_EXCLUDE silent]
-        //showProgressDialog();
-        // [END_EXCLUDE]
+        progressDialog.setMessage("Log in...");
+        progressDialog.show();
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        progressDialog.cancel();
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAGF, "signInWithCredential:success");
