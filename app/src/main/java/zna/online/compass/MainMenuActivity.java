@@ -36,13 +36,15 @@ public class MainMenuActivity extends AppCompatActivity {
     };
 
     private void loadProfile() {
-        LeadersFragment fragment = LeadersFragment.newInstance("first test", "leaders");
+        setTitle(getString(R.string.title_profile));
+        ProfileFragment fragment = ProfileFragment.newInstance("first test", "profile");
         fTrans = getFragmentManager().beginTransaction();
         fTrans.replace(R.id.content, fragment);
         fTrans.commit();
     }
 
     private void loadLeaders() {
+        setTitle(getString(R.string.title_leaders));
         LeadersFragment fragment = LeadersFragment.newInstance("first test", "leaders");
         fTrans = getFragmentManager().beginTransaction();
         fTrans.replace(R.id.content, fragment);
@@ -50,6 +52,7 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     private void loadEvents() {
+        setTitle(getString(R.string.title_events));
         EventsFragment fragment = EventsFragment.newInstance("first test", "events");
         fTrans = getFragmentManager().beginTransaction();
         fTrans.replace(R.id.content, fragment);
@@ -57,6 +60,7 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     private void loadPlaces() {
+        setTitle(getString(R.string.title_places));
         PlacesFragment fragment = PlacesFragment.newInstance("first test", "places");
         fTrans = getFragmentManager().beginTransaction();
         fTrans.replace(R.id.content, fragment);

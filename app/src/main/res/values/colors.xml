@@ -2,9 +2,9 @@
 <resources>
     <color name="colorPrimaryDarkOpacity">#80FFC107</color>
 
-    <color name="colorPrimary">#FFC107</color>
+    <color name="colorPrimary">#ffc107</color>
     <color name="colorLightPrimary">#FFECB3</color>
-    <color name="colorPrimaryDark">#FFA000</color>
+    <color name="colorPrimaryDark">#ffa000</color>
     <color name="colorAccent">#00bcd4</color>
     <color name="colorWhiteTextAndIcons">#ffffff</color>
     <color name="colorPrimaryText">#212121</color>
