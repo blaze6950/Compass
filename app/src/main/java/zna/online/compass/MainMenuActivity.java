@@ -39,7 +39,7 @@ public class MainMenuActivity extends AppCompatActivity {
         setTitle(getString(R.string.title_profile));
         ProfileFragment fragment = ProfileFragment.newInstance("first test", "profile");
         fTrans = getFragmentManager().beginTransaction();
-        fTrans.replace(R.id.content, fragment);
+        fTrans.replace(R.id.content_constraint_layout, fragment);
         fTrans.commit();
     }
 
@@ -47,7 +47,7 @@ public class MainMenuActivity extends AppCompatActivity {
         setTitle(getString(R.string.title_leaders));
         LeadersFragment fragment = LeadersFragment.newInstance("first test", "leaders");
         fTrans = getFragmentManager().beginTransaction();
-        fTrans.replace(R.id.content, fragment);
+        fTrans.replace(R.id.content_constraint_layout, fragment);
         fTrans.commit();
     }
 
@@ -55,7 +55,7 @@ public class MainMenuActivity extends AppCompatActivity {
         setTitle(getString(R.string.title_events));
         EventsFragment fragment = EventsFragment.newInstance("first test", "events");
         fTrans = getFragmentManager().beginTransaction();
-        fTrans.replace(R.id.content, fragment);
+        fTrans.replace(R.id.content_constraint_layout, fragment);
         fTrans.commit();
     }
 
@@ -63,7 +63,7 @@ public class MainMenuActivity extends AppCompatActivity {
         setTitle(getString(R.string.title_places));
         PlacesFragment fragment = PlacesFragment.newInstance("first test", "places");
         fTrans = getFragmentManager().beginTransaction();
-        fTrans.replace(R.id.content, fragment);
+        fTrans.replace(R.id.content_constraint_layout, fragment);
         fTrans.commit();
     }
 

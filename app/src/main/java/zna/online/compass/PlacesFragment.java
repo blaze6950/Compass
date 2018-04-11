@@ -1,12 +1,18 @@
 package zna.online.compass;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -28,6 +34,10 @@ public class PlacesFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private RecyclerView recyclerView;
+    private List<PlacesAndEventsModel> placesAndEventsModelListResult;
+    private PlacesAndEventsAdapter adapter;
 
     public PlacesFragment() {
         // Required empty public constructor
@@ -60,11 +70,33 @@ public class PlacesFragment extends Fragment {
         }
     }
 
+    private void InitializeFragment()
+    {
+        placesAndEventsModelListResult = new ArrayList<>();
+        recyclerView = (RecyclerView) getView().findViewById(R.id.recycler_view_places);
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getActivity().getApplicationContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        CreateListTest();
+
+        adapter = new PlacesAndEventsAdapter(placesAndEventsModelListResult);
+        recyclerView.setAdapter(adapter);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_places, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        InitializeFragment();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -104,5 +136,13 @@ public class PlacesFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private void CreateListTest()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            placesAndEventsModelListResult.add(new PlacesAndEventsModel("1", "2", "Reef", "mainPhoto.png", "4.4", "замечательное место у моря!", "", "", "Фонтанская дорога 33", "Ресторан", "9:00 - 0:00", "4325,4532 х 54674,5467564"));
+        }
     }
 }
