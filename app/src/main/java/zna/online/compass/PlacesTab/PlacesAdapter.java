@@ -50,13 +50,11 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlacesHold
         FirebaseStorage storage = FirebaseStorage.getInstance();
         // Create a storage reference from our app
         StorageReference storageRef = storage.getReference().child("PlacesPhotos").child(placesModel.id).child("MainPhoto/1.jpg");
-        GlideApp.with(holder.itemView.getContext())
-                .load(storageRef)
-                .into(holder.mainPhotoImageView);
-
-
-
-
+        if (storageRef != null){
+            GlideApp.with(holder.itemView.getContext())
+                    .load(storageRef)
+                    .into(holder.mainPhotoImageView);
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

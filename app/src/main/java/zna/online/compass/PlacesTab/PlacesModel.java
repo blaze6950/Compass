@@ -17,7 +17,6 @@ public class PlacesModel {
     }
 
     public String name;
-    public String mainPhoto;
 
     public String getNotes() {
         if (notes.length() > 22)
@@ -45,10 +44,9 @@ public class PlacesModel {
     public PlacesModel() {
     }
 
-    public PlacesModel(String id, String name, String mainPhoto, int averageCheck, String notes, String address, String type, String workingHours, String coordinates, double rate) {
+    public PlacesModel(String id, String name, int averageCheck, String notes, String address, String type, String workingHours, String coordinates, double rate) {
         this.id = id;
         this.name = name;
-        this.mainPhoto = mainPhoto;
         this.averageCheck = averageCheck;
         this.notes = notes;
         this.address = address;

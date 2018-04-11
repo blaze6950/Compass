@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import zna.online.compass.EventsTab.EventsFragment;
 import zna.online.compass.LeadersTab.LeadersFragment;
@@ -16,6 +17,7 @@ import zna.online.compass.R;
 public class MainMenuActivity extends AppCompatActivity {
 
     FragmentTransaction fTrans;
+    private int developerPathCounter = 0;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -75,7 +77,15 @@ public class MainMenuActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        //super.onBackPressed();
+        if (developerPathCounter == 5)
+        {
+            Toast.makeText(this.getApplicationContext(), R.string.appFunctionsExtended, Toast.LENGTH_SHORT).show();
+        }else if (developerPathCounter == 8) {
+            Toast.makeText(this.getApplicationContext(), R.string.appFunctionExtendedSuccess, Toast.LENGTH_SHORT).show();
+            developerPathCounter = 0;
+            //startActivity
+        }
+        developerPathCounter++;
     }
 
     @Override
