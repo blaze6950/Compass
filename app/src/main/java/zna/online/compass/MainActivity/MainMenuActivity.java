@@ -1,4 +1,4 @@
-package zna.online.compass;
+package zna.online.compass.MainActivity;
 
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -6,6 +6,12 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+
+import zna.online.compass.EventsTab.EventsFragment;
+import zna.online.compass.LeadersTab.LeadersFragment;
+import zna.online.compass.PlacesTab.PlacesFragment;
+import zna.online.compass.ProfileTab.ProfileFragment;
+import zna.online.compass.R;
 
 public class MainMenuActivity extends AppCompatActivity {
 

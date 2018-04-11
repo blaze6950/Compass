@@ -1,4 +1,4 @@
-package zna.online.compass;
+package zna.online.compass.AuthorizationActivities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -38,6 +38,9 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import zna.online.compass.MainActivity.MainMenuActivity;
+import zna.online.compass.R;
 
 public class Authorization extends AppCompatActivity implements View.OnClickListener{
 

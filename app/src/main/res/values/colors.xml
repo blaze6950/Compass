@@ -9,10 +9,10 @@
     <color name="colorWhiteTextAndIcons">#ffffff</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#757575</color>
-    <color name="colorDevided">#BDBDBD</color>
+    <color name="colorDevided">#bdbdbd</color>
     <color name="colorIcon">#727272</color>
     <color name="colorBadMark">#F44336</color>
-    <color name="colorGoodMark">#FDD835</color>
+    <color name="colorGoodMark">#fdd835</color>
     <color name="colorBestMark">#4CAF50</color>
 
     <!--<color name="colorAccent">#FF4081</color>-->

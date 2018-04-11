@@ -1,4 +1,4 @@
-package zna.online.compass;
+package zna.online.compass.MainActivity;
 
 import android.annotation.SuppressLint;
 import android.support.design.internal.BottomNavigationItemView;

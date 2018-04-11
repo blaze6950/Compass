@@ -1,29 +1,25 @@
-package zna.online.compass;
+package zna.online.compass.EventsTab;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
+import zna.online.compass.R;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link PlacesFragment.OnFragmentInteractionListener} interface
+ * {@link EventsFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link PlacesFragment#newInstance} factory method to
+ * Use the {@link EventsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PlacesFragment extends Fragment {
+public class EventsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -35,11 +31,7 @@ public class PlacesFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private RecyclerView recyclerView;
-    private List<PlacesAndEventsModel> placesAndEventsModelListResult;
-    private PlacesAndEventsAdapter adapter;
-
-    public PlacesFragment() {
+    public EventsFragment() {
         // Required empty public constructor
     }
 
@@ -49,11 +41,11 @@ public class PlacesFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment PlacesFragment.
+     * @return A new instance of fragment EventsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static PlacesFragment newInstance(String param1, String param2) {
-        PlacesFragment fragment = new PlacesFragment();
+    public static EventsFragment newInstance(String param1, String param2) {
+        EventsFragment fragment = new EventsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -70,33 +62,11 @@ public class PlacesFragment extends Fragment {
         }
     }
 
-    private void InitializeFragment()
-    {
-        placesAndEventsModelListResult = new ArrayList<>();
-        recyclerView = (RecyclerView) getView().findViewById(R.id.recycler_view_places);
-        recyclerView.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getActivity().getApplicationContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-
-        recyclerView.setLayoutManager(linearLayoutManager);
-
-        CreateListTest();
-
-        adapter = new PlacesAndEventsAdapter(placesAndEventsModelListResult);
-        recyclerView.setAdapter(adapter);
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_places, container, false);
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        InitializeFragment();
+        return inflater.inflate(R.layout.fragment_events, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -136,13 +106,5 @@ public class PlacesFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
-    }
-
-    private void CreateListTest()
-    {
-        for (int i = 0; i < 10; i++)
-        {
-            placesAndEventsModelListResult.add(new PlacesAndEventsModel("1", "2", "Reef", "mainPhoto.png", "4.4", "замечательное место у моря!", "", "", "Фонтанская дорога 33", "Ресторан", "9:00 - 0:00", "4325,4532 х 54674,5467564"));
-        }
     }
 }
