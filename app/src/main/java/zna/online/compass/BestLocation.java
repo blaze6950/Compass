@@ -21,7 +21,7 @@ public class BestLocation implements LocationListener {
     /**
      * @return the last know best location
      */
-    private Location getLastBestLocation() {
+    public Location getLastBestLocation() {
         mLocationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 
         if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

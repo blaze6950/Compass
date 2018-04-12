@@ -11,12 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,8 +40,7 @@ public class PlacesFragment extends Fragment {
     private RecyclerView recyclerView;
     private List<PlacesModel> placesModelListResult;
     private PlacesAdapter adapter;
-    private FirebaseDatabase database;
-    private DatabaseReference databaseReference;
+    private PlacesModelList placesModelList;
 
     public PlacesFragment() {
         // Required empty public constructor
@@ -79,8 +72,6 @@ public class PlacesFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference("Places");
     }
 
     @Override
@@ -135,14 +126,6 @@ public class PlacesFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    private void CreateListTest()
-    {
-        for (int i = 0; i < 10; i++)
-        {
-            placesModelListResult.add(new PlacesModel());
-        }
-    }
-
     private void InitializeFragment()
     {
         placesModelListResult = new ArrayList<>();
@@ -153,42 +136,21 @@ public class PlacesFragment extends Fragment {
 
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        //CreateListTest();
-
         adapter = new PlacesAdapter(placesModelListResult);
         recyclerView.setAdapter(adapter);
+
+        placesModelList = new PlacesModelList(getActivity().getApplicationContext(), this);
 
         UpdateList();
     }
 
-    private void UpdateList()
+    public void UpdateList()
     {
-        databaseReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                placesModelListResult.add(dataSnapshot.getValue(PlacesModel.class));
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+        placesModelListResult.clear();
+        List<PlacesModel> newPlacesModelListResult = placesModelList.getList();
+        if (newPlacesModelListResult != null){
+            placesModelListResult.addAll(newPlacesModelListResult);
+            adapter.notifyDataSetChanged();
+        }
     }
 }

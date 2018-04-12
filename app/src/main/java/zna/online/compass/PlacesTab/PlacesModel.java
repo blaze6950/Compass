@@ -5,6 +5,22 @@ import zna.online.compass.R;
 public class PlacesModel {
 
     public String id;
+    public String notes;
+    public String address;
+    public String type;
+    public String workingHours;
+    public float coordinatesLat;
+    public float coordinatesLon;
+    public String name;
+    public int averageCheck;
+    public double rate;
+
+    public void setDistance(float distance) {
+        int buf = (int)(distance + 50) / 100;
+        this.distance = buf / 10f;
+    }
+
+    public float distance;
 
     public String getName() {
         if (name.length() > 11)
@@ -16,8 +32,6 @@ public class PlacesModel {
         return name;
     }
 
-    public String name;
-
     public String getNotes() {
         if (notes.length() > 22)
         {
@@ -28,32 +42,25 @@ public class PlacesModel {
         return notes;
     }
 
-    public String notes;
-    public String address;
-    public String type;
-    public String workingHours;
-    public String coordinates;
-
     public String getAverageCheck() {
         return averageCheck + " UAH";
     }
 
-    public int averageCheck;
-    public double rate;
-
     public PlacesModel() {
     }
 
-    public PlacesModel(String id, String name, int averageCheck, String notes, String address, String type, String workingHours, String coordinates, double rate) {
+    public PlacesModel(String id, String notes, String address, String type, String workingHours, float coordinatesLat, float coordinatesLon, String name, int averageCheck, double rate, float distance) {
         this.id = id;
-        this.name = name;
-        this.averageCheck = averageCheck;
         this.notes = notes;
         this.address = address;
         this.type = type;
         this.workingHours = workingHours;
-        this.coordinates = coordinates;
+        this.coordinatesLat = coordinatesLat;
+        this.coordinatesLon = coordinatesLon;
+        this.name = name;
+        this.averageCheck = averageCheck;
         this.rate = rate;
+        this.distance = distance;
     }
 
     public int getColorRate() {

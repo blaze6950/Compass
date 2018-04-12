@@ -38,7 +38,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlacesHold
         // надо исправить до рабочего состояния!!!!!!
         holder.nameTextView.setText(placesModel.getName());
         holder.averageCheckTextView.setText(placesModel.getAverageCheck());
-        holder.distanceTextView.setText(placesModel.coordinates);
+        holder.distanceTextView.setText(placesModel.distance + "");
         holder.notesTextView.setText(placesModel.getNotes());
         holder.typeTextView.setText(placesModel.type);
         holder.workingHoursTextView.setText(placesModel.workingHours);
