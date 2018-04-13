@@ -127,4 +127,6 @@
     </string>
     <string name="action_settings">Settings</string>
     <string name="error_get_location">Ошибка при получении текущего местоположения! Попробуйте включить геоданные или wifi и обновите!</string>
+    <string name="subscribe_button">Подписаться</string>
+    <string name="photo_item_selected_activity">Фото</string>
 </resources>
