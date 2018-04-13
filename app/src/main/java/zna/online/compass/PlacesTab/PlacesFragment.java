@@ -5,6 +5,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -41,6 +42,7 @@ public class PlacesFragment extends Fragment {
     private List<PlacesModel> placesModelListResult;
     private PlacesAdapter adapter;
     private PlacesModelList placesModelList;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public PlacesFragment() {
         // Required empty public constructor
@@ -128,6 +130,15 @@ public class PlacesFragment extends Fragment {
 
     private void InitializeFragment()
     {
+        swipeRefreshLayout = getView().findViewById(R.id.swipe_refresh_layout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                UpdateList();
+            }
+        });
+        swipeRefreshLayout.setRefreshing(true);
+
         placesModelListResult = new ArrayList<>();
         recyclerView = (RecyclerView) getView().findViewById(R.id.recycler_view_places);
         recyclerView.setHasFixedSize(true);
@@ -151,6 +162,7 @@ public class PlacesFragment extends Fragment {
         if (newPlacesModelListResult != null){
             placesModelListResult.addAll(newPlacesModelListResult);
             adapter.notifyDataSetChanged();
+            swipeRefreshLayout.setRefreshing(false);
         }
     }
 }

@@ -34,7 +34,8 @@ public class BestLocation implements LocationListener {
             // for ActivityCompat#requestPermissions for more details.
             return null;
         }
-        Location locationGPS = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        //Location locationGPS = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        Location locationGPS = mLocationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
         Location locationNet = mLocationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
         long GPSLocationTime = 0;

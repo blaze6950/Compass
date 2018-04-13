@@ -1,5 +1,6 @@
 package zna.online.compass.PlacesTab;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import zna.online.compass.R;
 public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlacesHolder>{
 
     private List<PlacesModel> list;
+    private PlacesHolder placeHolder;
 
     public PlacesAdapter(List<PlacesModel> list) {
         this.list = list;
@@ -35,7 +37,6 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlacesHold
     public void onBindViewHolder(@NonNull PlacesHolder holder, int position) {
         PlacesModel placesModel = list.get(position);
 
-        // надо исправить до рабочего состояния!!!!!!
         holder.nameTextView.setText(placesModel.getName());
         holder.averageCheckTextView.setText(placesModel.getAverageCheck());
         holder.distanceTextView.setText(placesModel.distance + "");
@@ -44,8 +45,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlacesHold
         holder.workingHoursTextView.setText(placesModel.workingHours);
         holder.rateButton.setText(placesModel.rate + "");
         holder.rateButton.setBackgroundColor(holder.itemView.getResources().getColor(placesModel.getColorRate()));
-
-        //holder.mainPhotoImageView.setImageBitmap();
+        placeHolder = holder;
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         // Create a storage reference from our app
@@ -59,7 +59,11 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlacesHold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                int itemPosition = placeHolder.recyclerView.getChildLayoutPosition(v);
+                PlacesModel item = list.get(itemPosition);
+                Intent intent = new Intent(placeHolder.itemView.getContext(), PlacesSelectedItem.class);
+                intent.putExtra("selectedItem", item);
+                placeHolder.itemView.getContext().startActivity(intent);
             }
         });
     }
@@ -74,10 +78,12 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlacesHold
         TextView nameTextView, typeTextView, workingHoursTextView, distanceTextView, averageCheckTextView, notesTextView;
         Button rateButton;
         ImageView mainPhotoImageView;
+        RecyclerView recyclerView;
 
         public PlacesHolder(View itemView) {
             super(itemView);
 
+            this.recyclerView = this.itemView.findViewById(R.id.recycler_view_places);
             nameTextView = (TextView) itemView.findViewById(R.id.textView_name);
             typeTextView = (TextView) itemView.findViewById(R.id.textView_type);
             workingHoursTextView = (TextView) itemView.findViewById(R.id.textView_working_hours);

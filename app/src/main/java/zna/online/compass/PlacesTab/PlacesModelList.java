@@ -2,6 +2,7 @@ package zna.online.compass.PlacesTab;
 
 import android.content.Context;
 import android.location.Location;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -13,9 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import zna.online.compass.BestLocation;
+import zna.online.compass.BestLocationNew;
+import zna.online.compass.R;
 
 public class PlacesModelList {
+
     private BestLocation bestLocation;
+    private BestLocationNew bestLocationNew;
+
+
     private Context context;
     private List<PlacesModel> PlacesModelList;
     private PlacesFragment placesFragment;
@@ -67,11 +74,23 @@ public class PlacesModelList {
     {
         List<PlacesModel> newPlacesModelList;
 
+
+        //первый способ получение локации с помощью GPS и Internet провайдеров
         bestLocation = new BestLocation(context);
         Location currentLoc = bestLocation.getLastBestLocation();
+        if  (currentLoc == null){
+            Toast.makeText(context, context.getString(R.string.error_get_location), Toast.LENGTH_LONG).show();
+            return null;
+        }
+
+        //второй способ получить локацию, требуется 19 minsdk
+        //bestLocationNew = new BestLocationNew(context);
+        //Location currentLoc = bestLocationNew.getLastLocation();
+
+
         //UpdateList(PlacesModelList);
         for (PlacesModel placesModel:PlacesModelList) {
-            placesModel.setDistance(getDistance((float)currentLoc.getLongitude(), (float)currentLoc.getLatitude(), (float)placesModel.coordinatesLon, (float)placesModel.coordinatesLat));
+            placesModel.setDistance(getDistance((float)currentLoc.getLongitude(), (float)currentLoc.getLatitude(), placesModel.coordinatesLon, placesModel.coordinatesLat));
         }
         doSort(PlacesModelList, 0, PlacesModelList.size() - 1, currentLoc);
         newPlacesModelList = getMoreList(0);
