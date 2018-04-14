@@ -1,5 +1,6 @@
 package zna.online.compass.PlacesTab;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.List;
 
 import zna.online.compass.GlideApp;
+import zna.online.compass.PlacesTab.PlacesSelectedItem.PlacesSelectedItem;
 import zna.online.compass.R;
 
 public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlacesHolder>{
@@ -33,13 +35,14 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlacesHold
         return new PlacesHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.view_item_places_and_events, parent, false));
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull PlacesHolder holder, int position) {
         PlacesModel placesModel = list.get(position);
 
         holder.nameTextView.setText(placesModel.getName());
         holder.averageCheckTextView.setText(placesModel.getAverageCheck());
-        holder.distanceTextView.setText(placesModel.distance + "");
+        holder.distanceTextView.setText(placesModel.getDistance());
         holder.notesTextView.setText(placesModel.getNotes());
         holder.typeTextView.setText(placesModel.type);
         holder.workingHoursTextView.setText(placesModel.workingHours);
@@ -49,7 +52,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlacesHold
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         // Create a storage reference from our app
-        StorageReference storageRef = storage.getReference().child("PlacesPhotos").child(placesModel.id).child("MainPhoto/1.jpg");
+        StorageReference storageRef = storage.getReference().child("PlacesPhotos").child(placesModel.id).child("MainPhoto").child("1.jpg");
         if (storageRef != null){
             GlideApp.with(holder.itemView.getContext())
                     .load(storageRef)
@@ -93,7 +96,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlacesHold
 
             rateButton = (Button) itemView.findViewById(R.id.button_rate);
 
-            mainPhotoImageView = (ImageView) itemView.findViewById(R.id.imageView_main_photo);
+            mainPhotoImageView = (ImageView) itemView.findViewById(R.id.imageView_photo);
 
         }
     }

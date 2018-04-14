@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".PlacesTab.PlacesSelectedItem"
+    tools:context=".PlacesTab.PlacesSelectedItem.PlacesSelectedItem"
     tools:showIn="@layout/activity_places_selected_item">
 
     <LinearLayout
@@ -66,6 +66,7 @@
             android:textSize="16sp" />
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_photos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal" />

@@ -9,8 +9,10 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -147,6 +149,33 @@ public class PlacesFragment extends Fragment {
 
         recyclerView.setLayoutManager(linearLayoutManager);
 
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (!recyclerView.canScrollVertically(1)) {
+                    LoadMoreItemsForList();
+                }
+            }
+        });
+
+        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
+
         adapter = new PlacesAdapter(placesModelListResult);
         recyclerView.setAdapter(adapter);
 
@@ -157,12 +186,33 @@ public class PlacesFragment extends Fragment {
 
     public void UpdateList()
     {
-        placesModelListResult.clear();
-        List<PlacesModel> newPlacesModelListResult = placesModelList.getList();
-        if (newPlacesModelListResult != null){
-            placesModelListResult.addAll(newPlacesModelListResult);
+        if (placesModelList.getList(placesModelListResult)){
             adapter.notifyDataSetChanged();
             swipeRefreshLayout.setRefreshing(false);
         }
+//        placesModelListResult.clear();
+//        List<PlacesModel> newPlacesModelListResult = placesModelList.getList();
+//        if (newPlacesModelListResult != null){
+//            placesModelListResult.addAll(newPlacesModelListResult);
+//            adapter.notifyDataSetChanged();
+//            swipeRefreshLayout.setRefreshing(false);
+//        }
+    }
+
+    public void LoadMoreItemsForList()
+    {
+        swipeRefreshLayout.setRefreshing(true);
+        if (placesModelList.getMoreList(placesModelListResult.size() - 1, placesModelListResult)){
+            adapter.notifyDataSetChanged();
+            swipeRefreshLayout.setRefreshing(false);
+        }else{
+            Toast.makeText(this.getActivity(), "Молодец! Ты долистал до конца)", Toast.LENGTH_SHORT).show();
+            swipeRefreshLayout.setRefreshing(false);
+        }
+    }
+
+    public void GoTop()
+    {
+        recyclerView.scrollToPosition(0);
     }
 }

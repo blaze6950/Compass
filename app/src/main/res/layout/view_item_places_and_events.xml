@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
         android:background="@android:drawable/dialog_holo_light_frame"
-        android:clickable="true">
+        android:clickable="true"
+        android:focusable="true">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -121,11 +122,11 @@
                 android:layout_marginTop="4dp"
                 android:enabled="false"
                 android:text="0,0"
-                app:layout_constraintEnd_toStartOf="@+id/imageView_main_photo"
+                app:layout_constraintEnd_toStartOf="@+id/imageView_photo"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView_main_photo"
+                android:id="@+id/imageView_photo"
                 android:layout_width="130dp"
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
