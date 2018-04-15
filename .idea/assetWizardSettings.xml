@@ -16,11 +16,27 @@
                             <entry key="actionbar">
                               <value>
                                 <PersistentState>
+                                  <option name="children">
+                                    <map>
+                                      <entry key="image">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="paddingPercent" value="-10" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                    </map>
+                                  </option>
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="E:\GoogleDrive\CompassProject\Oleg\02-main-screen\source\cash\drawable-xxxhdpi\ic_cash_grey600_48dp.png" />
-                                      <entry key="outputName" value="ic_places_and_events_recyclerview_averagecheck" />
+                                      <entry key="imageAsset" value="E:\GoogleDrive\CompassProject\Oleg\screens\_source\sent.png" />
+                                      <entry key="outputName" value="ic_comment_send" />
+                                      <entry key="theme" value="CUSTOM" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -36,7 +52,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/C:/android/AndroidStudio/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_add_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/C:/android/AndroidStudio/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_send_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -46,7 +62,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="outputName" value="ic_subscribe_event_or_place" />
+                                      <entry key="assetType" value="IMAGE" />
+                                      <entry key="imageAsset" value="E:\GoogleDrive\CompassProject\Oleg\screens\_source\sent.png" />
+                                      <entry key="outputName" value="ic_send_comment" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -56,7 +74,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputIconType" value="NOTIFICATION" />
+                            <entry key="outputIconType" value="ACTIONBAR" />
                           </map>
                         </option>
                       </PersistentState>

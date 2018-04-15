@@ -9,15 +9,15 @@
         android:id="@+id/itemView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:background="@android:drawable/dialog_holo_light_frame"
+        android:layout_margin="4dp"
         android:clickable="true"
         android:focusable="true">
+        <!--android:background="@android:drawable/dialog_holo_light_frame"-->
 
         <ImageView
             android:id="@+id/imageView_photo"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

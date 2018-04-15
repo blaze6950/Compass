@@ -129,4 +129,7 @@
     <string name="error_get_location">Ошибка при получении текущего местоположения! Попробуйте включить геоданные или wifi и обновите!</string>
     <string name="subscribe_button">Подписаться</string>
     <string name="photo_item_selected_activity">Фото</string>
+    <string name="comments_item_selected_activity">Отзывы</string>
+    <string name="places_comment_send">Оставить отзыв</string>
+    <string name="error_loading_photo">Ошибка загрузки главной фотографии! Попробуйте обновить</string>
 </resources>

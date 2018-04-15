@@ -59,34 +59,43 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlacesHold
                     .into(holder.mainPhotoImageView);
         }
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.setItemClickListener(new ItemClickListener() {
             @Override
-            public void onClick(View v) {
-                int itemPosition = placeHolder.recyclerView.getChildLayoutPosition(v);
-                PlacesModel item = list.get(itemPosition);
-                Intent intent = new Intent(placeHolder.itemView.getContext(), PlacesSelectedItem.class);
-                intent.putExtra("selectedItem", item);
-                placeHolder.itemView.getContext().startActivity(intent);
+            public void onClick(View v, int position, boolean isLongClick) {
+                if (!isLongClick){
+                    PlacesModel item = list.get(position);
+                    Intent intent = new Intent(v.getContext(), PlacesSelectedItem.class);
+                    intent.putExtra("selectedItem", item);
+                    v.getContext().startActivity(intent);
+
+                }
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        if (list != null)
+            return list.size();
+        return -1;
     }
 
-    class PlacesHolder extends RecyclerView.ViewHolder {
+    class PlacesHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
 
         TextView nameTextView, typeTextView, workingHoursTextView, distanceTextView, averageCheckTextView, notesTextView;
         Button rateButton;
         ImageView mainPhotoImageView;
         RecyclerView recyclerView;
 
+        private ItemClickListener itemClickListener;
+
         public PlacesHolder(View itemView) {
             super(itemView);
 
-            this.recyclerView = this.itemView.findViewById(R.id.recycler_view_places);
+            itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
+
+            recyclerView = (RecyclerView) itemView.findViewById(R.id.recycler_view_places);
             nameTextView = (TextView) itemView.findViewById(R.id.textView_name);
             typeTextView = (TextView) itemView.findViewById(R.id.textView_type);
             workingHoursTextView = (TextView) itemView.findViewById(R.id.textView_working_hours);
@@ -98,6 +107,21 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlacesHold
 
             mainPhotoImageView = (ImageView) itemView.findViewById(R.id.imageView_photo);
 
+        }
+
+        @Override
+        public void onClick(View v) {
+            itemClickListener.onClick(v, getAdapterPosition(), false);
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            itemClickListener.onClick(v, getAdapterPosition(), true);
+            return true;
+        }
+
+        public void setItemClickListener(ItemClickListener itemClickListener){
+            this.itemClickListener = itemClickListener;
         }
     }
 }
