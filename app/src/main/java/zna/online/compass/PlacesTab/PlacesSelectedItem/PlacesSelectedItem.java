@@ -19,8 +19,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -50,10 +53,17 @@ public class PlacesSelectedItem extends AppCompatActivity {
     private PlacesPhotosAdapter placesPhotosAdapter;
     private List<StorageReference> photosList;
 
+
     private RecyclerView recyclerViewComments;
+    private PlacesCommentsAdapter placesCommentsAdapter;
+    private List<Comment> commentsList;
+
+
     private FirebaseStorage storage;
     private StorageReference storageRef;
     private StorageReference mainPhotoRef;
+
+    private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +75,11 @@ public class PlacesSelectedItem extends AppCompatActivity {
         getSupportActionBar().setTitle("");
         placesModel = getIntent().getParcelableExtra("selectedItem");
 
+        GetToken();
+
         ConfigRecyclerViewPhotos();
+
+        ConfigRecyclerViewComments();
 
         InitialVariables();
 
@@ -79,6 +93,15 @@ public class PlacesSelectedItem extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+        });
+    }
+
+    private void GetToken(){
+        FirebaseAuth.getInstance().getCurrentUser().getIdToken(true).addOnSuccessListener(new OnSuccessListener<GetTokenResult>() {
+            @Override
+            public void onSuccess(GetTokenResult getTokenResult) {
+                token = getTokenResult.getToken();
             }
         });
     }
@@ -155,6 +178,17 @@ public class PlacesSelectedItem extends AppCompatActivity {
         recyclerViewPhotos.setAdapter(placesPhotosAdapter);
     }
 
+    private void ConfigRecyclerViewComments() {
+        recyclerViewComments = findViewById(R.id.recycler_view_comments);
+        LinearLayoutManager verticalLayoutManager = new LinearLayoutManager(this);
+        verticalLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerViewComments.setLayoutManager(verticalLayoutManager);
+
+        commentsList = new ArrayList<>();
+        placesCommentsAdapter = new PlacesCommentsAdapter(commentsList);
+        recyclerViewComments.setAdapter(placesCommentsAdapter);
+    }
+
     public class PlacesPhotosAdapter extends RecyclerView.Adapter<PlacesPhotosAdapter.PlacesPhotosHolder>{
 
         private List<StorageReference> list;
@@ -212,16 +246,77 @@ public class PlacesSelectedItem extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull PlacesCommentsHolder holder, int position) {
-            Comment comment = list.get(position);
+            final Comment comment = list.get(position);
 
             holder.name.setText(comment.name);
             holder.comment.setText(comment.comment);
+
+
+//            FirebaseDatabase database = FirebaseDatabase.getInstance();
+//            DatabaseReference databaseReference = database.getReference("Profiles").child(token).child("subscribes");
+//            databaseReference.addChildEventListener(new ChildEventListener() {
+//                @Override
+//                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                    if (dataSnapshot.getKey() == placesModel.id){
+//                        subscribeBtn.setText(R.string.unsubscribe);
+//                    }
+//                }
+//
+//                @Override
+//                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//
+//                }
+//
+//                @Override
+//                public void onChildRemoved(DataSnapshot dataSnapshot) {
+//
+//                }
+//
+//                @Override
+//                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//                }
+//
+//                @Override
+//                public void onCancelled(DatabaseError databaseError) {
+//
+//                }
+//            });
+//
+//            databaseReference = database.getReference("Comments").child(comment.id).child("likes");
+//            databaseReference.addChildEventListener(new ChildEventListener() {
+//                @Override
+//                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                    placesCommentsAdapter..likeCounter.setText(Integer.parseInt(holder.likeCounter.getText()) + 1);
+//                }
+//
+//                @Override
+//                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//
+//                }
+//
+//                @Override
+//                public void onChildRemoved(DataSnapshot dataSnapshot) {
+//
+//                }
+//
+//                @Override
+//                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//                }
+//
+//                @Override
+//                public void onCancelled(DatabaseError databaseError) {
+//
+//                }
+//            });
 //            holder.likeCounter.setText("");
 //            holder.like.setImageBitmap(R.drawable.ic_unlike);
 
             StorageReference profilePhotoRef = storage.getReference().child("ProfilesPhotos").child(comment.idProfile).child("1.jpg");
             GlideApp.with(getApplicationContext())
                     .load(profilePhotoRef)
+                    .apply(RequestOptions.circleCropTransform())
                     .into(holder.profilePhoto);
         }
 

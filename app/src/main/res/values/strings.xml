@@ -132,4 +132,5 @@
     <string name="comments_item_selected_activity">Отзывы</string>
     <string name="places_comment_send">Оставить отзыв</string>
     <string name="error_loading_photo">Ошибка загрузки главной фотографии! Попробуйте обновить</string>
+    <string name="unsubscribe">Отписаться</string>
 </resources>
