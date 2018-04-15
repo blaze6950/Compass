@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/filter"
-        android:icon="@drawable/ic_main_menu_filter"
+        android:id="@+id/share"
+        android:icon="@drawable/ic_main_menu_share"
         app:showAsAction="always"
-        android:title="Фильтр">
+        android:title="Поделиться">
     </item>
 </menu>

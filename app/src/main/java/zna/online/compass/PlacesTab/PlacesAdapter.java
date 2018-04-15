@@ -47,7 +47,13 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlacesHold
         holder.typeTextView.setText(placesModel.type);
         holder.workingHoursTextView.setText(placesModel.workingHours);
         holder.rateButton.setText(placesModel.rate + "");
-        holder.rateButton.setBackgroundColor(holder.itemView.getResources().getColor(placesModel.getColorRate()));
+        //holder.rateButton.setBackgroundColor(holder.itemView.getResources().getColor(placesModel.getColorRate()));
+
+        //holder.rateButton.setBackgroundColor(placesModel.getColorRate());
+
+        holder.rateButton.setBackgroundResource(placesModel.getColorRate());
+
+
         placeHolder = holder;
 
         FirebaseStorage storage = FirebaseStorage.getInstance();

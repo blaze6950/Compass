@@ -1,12 +1,15 @@
 package zna.online.compass.MainActivity;
 
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import zna.online.compass.EventsTab.EventsFragment;
@@ -14,10 +17,12 @@ import zna.online.compass.LeadersTab.LeadersFragment;
 import zna.online.compass.PlacesTab.PlacesFragment;
 import zna.online.compass.ProfileTab.ProfileFragment;
 import zna.online.compass.R;
+import zna.online.compass.Test.TestActivity;
 
-public class MainMenuActivity extends AppCompatActivity {
+public class MainMenuActivity extends AppCompatActivity  implements View.OnClickListener {
 
     FragmentTransaction fTrans;
+    private FloatingActionButton testButton;
     private int developerPathCounter = 0;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -108,6 +113,7 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        testButton = (FloatingActionButton) findViewById(R.id.main_menu_test);
 
         //mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -120,4 +126,10 @@ public class MainMenuActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        if (v == testButton){
+            startActivity(new Intent(this, TestActivity.class));
+        }
+    }
 }

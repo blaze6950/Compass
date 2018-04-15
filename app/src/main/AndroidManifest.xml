@@ -82,6 +82,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="zna.online.compass.MainActivity.MainMenuActivity" />
         </activity>
+        <activity
+            android:name=".Test.TestActivity"
+            android:theme="@style/AppThemeTest">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="zna.online.compass.MainActivity.MainMenuActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -24,7 +24,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -35,6 +34,7 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.shobhitpuri.custombuttons.GoogleSignInButton;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -53,7 +53,7 @@ public class Authorization extends AppCompatActivity implements View.OnClickList
     // [END declare_auth]
 
     private GoogleSignInClient mGoogleSignInClient;
-    private SignInButton gSignInButton;
+    private GoogleSignInButton gSignInButton;
     private ProgressDialog progressDialog;
 
     //Facebook auth
@@ -81,7 +81,7 @@ public class Authorization extends AppCompatActivity implements View.OnClickList
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_authorization);
         progressDialog = new ProgressDialog(this);
-        gSignInButton = (SignInButton) findViewById(R.id.sign_in_button_google);
+        gSignInButton = (GoogleSignInButton) findViewById(R.id.sign_in_button_google);
         gSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

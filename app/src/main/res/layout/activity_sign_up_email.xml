@@ -66,14 +66,28 @@
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="15dp"
                     android:hint="@string/email"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
+                    android:shadowColor="@color/colorWhiteTextAndIcons"
                     android:singleLine="true"
-                    android:textColor="@color/colorWhiteTextAndIcons" />
+                    android:textColor="@color/colorWhiteTextAndIcons"
+                    android:textColorHighlight="@color/colorWhiteTextAndIcons"
+                    android:theme="@style/Autocomplete" />
 
             </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:text="Введите адресс Вашей электронной почты"
+                android:textColor="@color/colorWhiteTextAndIcons" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -83,16 +97,31 @@
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="15dp"
                     android:hint="@string/password"
                     android:imeActionId="@+id/login"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:shadowColor="@color/colorWhiteTextAndIcons"
+                    android:singleLine="true"
+                    android:textColor="@color/colorWhiteTextAndIcons"
+                    android:textColorHighlight="@color/colorWhiteTextAndIcons"
+                    android:theme="@style/Autocomplete" />
 
             </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:text="Придумайте пароль"
+                android:textColor="@color/colorWhiteTextAndIcons" />
 
             <Button
                 android:id="@+id/email_sign_up_button"

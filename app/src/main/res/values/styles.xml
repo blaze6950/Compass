@@ -11,8 +11,15 @@
     <style name="AppThemeStatusBarColor" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/fui_transparent</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryText</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppThemeTest" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Set AppCompat’s color theming attrs -->
+        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/button_custom_pressed</item> //this is the statusbar color
+        <!-- Other attributes -->
     </style>
 
     <style name="AppThemeWithActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -46,4 +53,12 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Autocomplete" parent="Widget.AppCompat.Light.AutoCompleteTextView">
+        <item name="android:background">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/colorWhiteTextAndIcons</item>
+        <item name="colorControlActivated">@color/colorWhiteTextAndIcons</item>
+        <item name="android:textColorHint">@color/colorWhiteTextAndIcons</item>
+        <item name="android:cacheColorHint">@color/colorWhiteTextAndIcons</item>
+    </style>
 </resources>
