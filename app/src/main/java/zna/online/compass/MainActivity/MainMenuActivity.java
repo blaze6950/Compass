@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -57,6 +58,20 @@ public class MainMenuActivity extends AppCompatActivity {
         fTrans = getFragmentManager().beginTransaction();
         fTrans.replace(R.id.content_constraint_layout, fragment);
         fTrans.commit();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_filter, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.filter){
+            //Open dialog for choose filters
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void loadEvents() {

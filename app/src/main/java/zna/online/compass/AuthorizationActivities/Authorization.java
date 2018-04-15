@@ -73,6 +73,10 @@ public class Authorization extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
+
         FirebaseApp.initializeApp(this);
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_authorization);

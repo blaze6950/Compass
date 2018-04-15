@@ -24,7 +24,7 @@
 
         <activity
             android:name=".AuthorizationActivities.Authorization"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppThemeStatusBarColor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,7 +33,7 @@
         </activity>
         <activity
             android:name=".AuthorizationActivities.SignUpEmailActivity"
-            android:label="Sign up"
+            android:label="@string/sign_up"
             android:theme="@style/AppThemeWithActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -41,7 +41,7 @@
         </activity>
         <activity
             android:name=".AuthorizationActivities.SignInEmailActivity"
-            android:label="Sign in"
+            android:label="@string/sign_in"
             android:theme="@style/AppThemeWithActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -49,7 +49,6 @@
         </activity>
         <activity
             android:name=".MainActivity.MainMenuActivity"
-            android:label="@string/title_activity_main_menu"
             android:theme="@style/AppThemeDefault" />
         <activity
             android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"

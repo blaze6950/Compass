@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"    
-
+    android:layout_height="match_parent"
     tools:context="zna.online.compass.AuthorizationActivities.Authorization"
     tools:layout_editor_absoluteY="25dp"
-    tools:layout_editor_absoluteX="0dp">
+    tools:layout_editor_absoluteX="0dp"
+    android:fitsSystemWindows="true">
     <!--android:theme="@android:style/Theme.Black.NoTitleBar"-->
 
     <ImageView
@@ -52,15 +52,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView">
 
-        <com.google.android.gms.common.SignInButton
+        <!--<com.google.android.gms.common.SignInButton-->
+            <!--android:id="@+id/sign_in_button_google"-->
+            <!--android:layout_width="288dp"-->
+            <!--android:layout_height="44dp"-->
+            <!--android:onClick="onClick"-->
+            <!--android:visibility="visible"-->
+            <!--android:text="Google"-->
+            <!--tools:layout_editor_absoluteY="80dp"></com.google.android.gms.common.SignInButton>-->
+
+        <com.shobhitpuri.custombuttons.GoogleSignInButton
             android:id="@+id/sign_in_button_google"
             android:layout_width="288dp"
             android:layout_height="44dp"
             android:onClick="onClick"
-            android:visibility="visible"
-            tools:layout_editor_absoluteY="80dp"></com.google.android.gms.common.SignInButton>
+            android:text="Google"
+            app:isDarkTheme="false" />
 
         <com.facebook.login.widget.LoginButton
+            xmlns:facebook="http://schemas.android.com/apk/res-auto"
             android:id="@+id/sign_in_button_facebook"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,6 +81,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="0dp"
             android:paddingTop="10dp"
+            facebook:com_facebook_login_text="Facebook"
             android:visibility="visible"
             tools:layout_editor_absoluteY="80dp" />
 

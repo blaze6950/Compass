@@ -44,6 +44,10 @@ public class SignUpEmailActivity extends AppCompatActivity implements View.OnCli
         signupButton = (Button) findViewById(R.id.email_sign_up_button);
         textViewSignUp = (TextView) findViewById(R.id.textViewSignUp);
 
+        if (getIntent().hasExtra("email")){
+            emailAutoCompleteTextView.setText(getIntent().getStringExtra("email"));
+        }
+
         signupButton.setOnClickListener((View.OnClickListener)(this));
         textViewSignUp.setOnClickListener((View.OnClickListener)(this));
     }
@@ -121,7 +125,13 @@ public class SignUpEmailActivity extends AppCompatActivity implements View.OnCli
             registerUser();
         }else if (v == textViewSignUp)
         {
-            startActivity(new Intent(SignUpEmailActivity.this, SignInEmailActivity.class));
+            if (emailAutoCompleteTextView.getText().toString() != ""){
+                Intent intent = new Intent(SignUpEmailActivity.this, SignInEmailActivity.class);
+                intent.putExtra("email", emailAutoCompleteTextView.getText().toString());
+                startActivity(intent);
+            }else{
+                startActivity(new Intent(SignUpEmailActivity.this, SignInEmailActivity.class));
+            }
         }
     }
 }

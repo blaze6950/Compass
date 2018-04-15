@@ -29,7 +29,7 @@
                 android:clickable="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/ic_main_meny_lightning" />
+                app:srcCompat="@drawable/ic_main_menu_lightning" />
         </android.support.constraint.ConstraintLayout>
 
     </FrameLayout>

@@ -120,6 +120,7 @@
                 android:layout_marginTop="4dp"
                 android:enabled="false"
                 android:text="0,0"
+                android:textColor="@color/colorWhiteTextAndIcons"
                 app:layout_constraintEnd_toStartOf="@+id/imageView_photo"
                 app:layout_constraintTop_toTopOf="parent" />
 

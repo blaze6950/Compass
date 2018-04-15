@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.load.MultiTransformation;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,10 +32,14 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 import zna.online.compass.GlideApp;
 import zna.online.compass.PlacesTab.PlacesModel;
 import zna.online.compass.R;
 
+import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
+
+@SuppressWarnings("unchecked")
 public class PlacesSelectedItem extends AppCompatActivity {
 
     private PlacesModel placesModel;
@@ -205,8 +211,15 @@ public class PlacesSelectedItem extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull PlacesPhotosHolder holder, int position) {
+
+            MultiTransformation<android.graphics.Bitmap> multiLeft = new MultiTransformation<>(
+                    new CenterCrop(),
+                    new RoundedCornersTransformation(25, 0, RoundedCornersTransformation.CornerType.ALL));
+
+
             GlideApp.with(getApplicationContext())
                     .load(list.get(position))
+                    .apply(bitmapTransform(multiLeft))
                     .into(holder.additionalPhoto);
         }
 

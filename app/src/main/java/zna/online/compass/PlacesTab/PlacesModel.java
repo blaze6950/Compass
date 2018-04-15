@@ -91,11 +91,11 @@ public class PlacesModel implements Parcelable{
     public int getColorRate() {
         int colorRate;
         if (rate < 4){
-            colorRate = R.color.colorBadMark;
+            colorRate = R.drawable.rate_bad_mark;
         }else if(rate > 7){
-            colorRate = R.color.colorBestMark;
+            colorRate = R.drawable.rate_best_mark;
         }else{
-            colorRate = R.color.colorGoodMark;
+            colorRate = R.drawable.rate_good_mark;
         }
         return colorRate;
     }
