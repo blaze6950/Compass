@@ -83,44 +83,12 @@ public class PlacesSelectedItem extends AppCompatActivity {
         });
     }
 
-    private void ConfigRecyclerViewPhotos() {
-        recyclerViewPhotos = findViewById(R.id.recycler_view_photos);
-        LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(this);
-        horizontalLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerViewPhotos.setLayoutManager(horizontalLayoutManager);
-
-        photosList = new ArrayList<>();
-        placesPhotosAdapter = new PlacesPhotosAdapter(photosList);
-        recyclerViewPhotos.setAdapter(placesPhotosAdapter);
-    }
-
     private void LoadData() {
         name.setText(placesModel.name);
         type.setText(placesModel.type);
         itemInfo.setText(placesModel.address + " • " + placesModel.workingHours);
         notes.setText(placesModel.notes);
         LoadAdditionalPhotos();
-    }
-
-    private void LoadAdditionalPhotos() {
-        storageRef = storage.getReference().child("PlacesPhotos").child(placesModel.id);
-        int i = 1;
-        LoadAdditionalPhoto(i);
-    }
-
-    private void LoadAdditionalPhoto(final int i) {
-        storageRef = storageRef.child(i + ".jpg");
-        storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                if (storageRef != null) {
-                    photosList.add(storageRef);
-                }
-                storageRef = storageRef.getParent();
-                placesPhotosAdapter.notifyDataSetChanged();
-                LoadAdditionalPhoto(i + 1);
-            }
-        });
     }
 
     private void InitialVariables() {
@@ -155,6 +123,38 @@ public class PlacesSelectedItem extends AppCompatActivity {
         });
     }
 
+    private void LoadAdditionalPhotos() {
+        storageRef = storage.getReference().child("PlacesPhotos").child(placesModel.id);
+        int i = 1;
+        LoadAdditionalPhoto(i);
+    }
+
+    private void LoadAdditionalPhoto(final int i) {
+        storageRef = storageRef.child(i + ".jpg");
+        storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                if (storageRef != null) {
+                    photosList.add(storageRef);
+                }
+                storageRef = storageRef.getParent();
+                placesPhotosAdapter.notifyDataSetChanged();
+                LoadAdditionalPhoto(i + 1);
+            }
+        });
+    }
+
+    private void ConfigRecyclerViewPhotos() {
+        recyclerViewPhotos = findViewById(R.id.recycler_view_photos);
+        LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(this);
+        horizontalLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerViewPhotos.setLayoutManager(horizontalLayoutManager);
+
+        photosList = new ArrayList<>();
+        placesPhotosAdapter = new PlacesPhotosAdapter(photosList);
+        recyclerViewPhotos.setAdapter(placesPhotosAdapter);
+    }
+
     public class PlacesPhotosAdapter extends RecyclerView.Adapter<PlacesPhotosAdapter.PlacesPhotosHolder>{
 
         private List<StorageReference> list;
@@ -178,7 +178,9 @@ public class PlacesSelectedItem extends AppCompatActivity {
 
         @Override
         public int getItemCount() {
-            return list.size();
+            if (list != null)
+                return list.size();
+            return -1;
         }
 
         class PlacesPhotosHolder extends RecyclerView.ViewHolder {
@@ -191,6 +193,59 @@ public class PlacesSelectedItem extends AppCompatActivity {
                 additionalPhoto = (ImageView) itemView.findViewById(R.id.imageView_photo);
             }
 
+        }
+    }
+
+    public class PlacesCommentsAdapter extends RecyclerView.Adapter<PlacesCommentsAdapter.PlacesCommentsHolder> {
+
+        private List<Comment> list;
+
+        public PlacesCommentsAdapter(List<Comment> list) {
+            this.list = list;
+        }
+
+        @NonNull
+        @Override
+        public PlacesCommentsHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new PlacesCommentsAdapter.PlacesCommentsHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.view_item_selected_item_comments, parent, false));
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull PlacesCommentsHolder holder, int position) {
+            Comment comment = list.get(position);
+
+            holder.name.setText(comment.name);
+            holder.comment.setText(comment.comment);
+//            holder.likeCounter.setText("");
+//            holder.like.setImageBitmap(R.drawable.ic_unlike);
+
+            StorageReference profilePhotoRef = storage.getReference().child("ProfilesPhotos").child(comment.idProfile).child("1.jpg");
+            GlideApp.with(getApplicationContext())
+                    .load(profilePhotoRef)
+                    .into(holder.profilePhoto);
+        }
+
+        @Override
+        public int getItemCount() {
+            if (list != null)
+                return list.size();
+            return -1;
+        }
+
+        class PlacesCommentsHolder extends RecyclerView.ViewHolder {
+
+            ImageView profilePhoto, like;
+            TextView name, comment, likeCounter;
+
+            public PlacesCommentsHolder(View itemView) {
+                super(itemView);
+
+                profilePhoto = (ImageView) itemView.findViewById(R.id.comment_image_profile);
+                like = (ImageView) itemView.findViewById(R.id.comment_like);
+                name = (TextView) itemView.findViewById(R.id.comment_name);
+                comment = (TextView) itemView.findViewById(R.id.comment_content);
+                likeCounter = (TextView) itemView.findViewById(R.id.comment_like_counter);
+            }
         }
     }
 }

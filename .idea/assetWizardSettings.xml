@@ -34,9 +34,10 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="E:\GoogleDrive\CompassProject\Oleg\screens\_source\sent.png" />
-                                      <entry key="outputName" value="ic_comment_send" />
+                                      <entry key="imageAsset" value="E:\GoogleDrive\CompassProject\Oleg\screens\_source\heart-outline-red-96.png" />
+                                      <entry key="outputName" value="ic_like" />
                                       <entry key="theme" value="CUSTOM" />
+                                      <entry key="themeColor" value="ff0700" />
                                     </map>
                                   </option>
                                 </PersistentState>
