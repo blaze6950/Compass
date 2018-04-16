@@ -106,6 +106,7 @@
                 android:layout_marginEnd="4dp"
                 android:layout_marginRight="4dp"
                 android:background="@color/fui_transparent"
+                android:onClick="onClick"
                 app:layout_constraintEnd_toEndOf="@+id/comment_item_selected_activity"
                 app:srcCompat="@drawable/ic_comment_send" />
         </android.support.constraint.ConstraintLayout>
@@ -114,6 +115,7 @@
             android:id="@+id/recycler_view_comments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical"
             android:scrollbars="horizontal|vertical">
 

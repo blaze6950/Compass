@@ -214,7 +214,7 @@ public class LeadersFragment extends Fragment {
                     .into(holder.profilePhoto);
 
             holder.name.setText(profile.name + " " + profile.lastName);
-            //holder.position
+            holder.position.setText(String.valueOf(position + 1));
         }
 
         @Override

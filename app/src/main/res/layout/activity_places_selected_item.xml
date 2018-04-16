@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipe_refresh_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PlacesTab.PlacesSelectedItem.PlacesSelectedItem"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:visibility="visible"
+    tools:context=".PlacesTab.PlacesSelectedItem.PlacesSelectedItem">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -34,7 +35,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fitsSystemWindows="true"
-                    android:scaleType="centerCrop"/>
+                    android:scaleType="centerCrop" />
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
@@ -59,4 +60,4 @@
             app:layout_anchorGravity="bottom|end" />
 
     </android.support.design.widget.CoordinatorLayout>
-</android.support.v4.widget.SwipeRefreshLayout>
+</FrameLayout>

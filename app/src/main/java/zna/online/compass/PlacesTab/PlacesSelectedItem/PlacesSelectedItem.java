@@ -28,6 +28,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GetTokenResult;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -42,7 +47,7 @@ import zna.online.compass.R;
 import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 
 @SuppressWarnings("unchecked")
-public class PlacesSelectedItem extends AppCompatActivity {
+public class PlacesSelectedItem extends AppCompatActivity implements View.OnClickListener{
 
     private PlacesModel placesModel;
     //private EventsModel eventsModel;
@@ -97,7 +102,7 @@ public class PlacesSelectedItem extends AppCompatActivity {
         getSupportActionBar().setTitle("");
         placesModel = getIntent().getParcelableExtra("selectedItem");
 
-        GetToken();
+        //GetToken();
 
         ConfigRecyclerViewPhotos();
 
@@ -109,12 +114,45 @@ public class PlacesSelectedItem extends AppCompatActivity {
 
         LoadData();
 
+        LoadComments();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+        });
+    }
+
+    private void LoadComments() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Places").child(placesModel.id).child("comments");
+        databaseReference.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                commentsList.add(dataSnapshot.getValue(Comment.class));
+                commentsList.get(commentsList.size() - 1).StartInit(placesCommentsAdapter, "Places", placesModel.id);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         });
     }
@@ -211,6 +249,38 @@ public class PlacesSelectedItem extends AppCompatActivity {
         recyclerViewComments.setAdapter(placesCommentsAdapter);
     }
 
+    @Override
+    public void onClick(View v) {
+        if (v == commentSendBtn){
+            SendComment();
+        }else{
+            SubscribeButtonClick();
+        }
+    }
+
+    private void SubscribeButtonClick() {
+    }
+
+    private void SendComment() {
+        if  (!comment.getText().toString().equals("")){
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference databaseReference = database.getReference("Places").child(placesModel.id).child("comments");
+            Comment newComment = new Comment();
+            newComment.comment = comment.getText().toString();
+            newComment.id = databaseReference.push().getKey();
+            newComment.idProfile = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            newComment.name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+            databaseReference = databaseReference.child(newComment.id);
+            databaseReference.setValue(newComment);
+
+            comment.setText("", TextView.BufferType.EDITABLE);
+
+            Toast.makeText(this, "Комментарий отправлен!", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "Введите текст комментария чтобы отправить!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public class PlacesPhotosAdapter extends RecyclerView.Adapter<PlacesPhotosAdapter.PlacesPhotosHolder>{
 
         private List<StorageReference> list;
@@ -280,67 +350,13 @@ public class PlacesSelectedItem extends AppCompatActivity {
             holder.name.setText(comment.name);
             holder.comment.setText(comment.comment);
 
+            if (comment.isLiked()){
+                holder.like.setImageResource(R.drawable.ic_like);
+            }else{
+                holder.like.setImageResource(R.drawable.ic_unlike);
+            }
 
-//            FirebaseDatabase database = FirebaseDatabase.getInstance();
-//            DatabaseReference databaseReference = database.getReference("Profiles").child(token).child("subscribes");
-//            databaseReference.addChildEventListener(new ChildEventListener() {
-//                @Override
-//                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                    if (dataSnapshot.getKey() == placesModel.id){
-//                        subscribeBtn.setText(R.string.unsubscribe);
-//                    }
-//                }
-//
-//                @Override
-//                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//
-//                }
-//
-//                @Override
-//                public void onChildRemoved(DataSnapshot dataSnapshot) {
-//
-//                }
-//
-//                @Override
-//                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//                }
-//
-//                @Override
-//                public void onCancelled(DatabaseError databaseError) {
-//
-//                }
-//            });
-//
-//            databaseReference = database.getReference("Comments").child(comment.id).child("likes");
-//            databaseReference.addChildEventListener(new ChildEventListener() {
-//                @Override
-//                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                    placesCommentsAdapter..likeCounter.setText(Integer.parseInt(holder.likeCounter.getText()) + 1);
-//                }
-//
-//                @Override
-//                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//
-//                }
-//
-//                @Override
-//                public void onChildRemoved(DataSnapshot dataSnapshot) {
-//
-//                }
-//
-//                @Override
-//                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//                }
-//
-//                @Override
-//                public void onCancelled(DatabaseError databaseError) {
-//
-//                }
-//            });
-//            holder.likeCounter.setText("");
-//            holder.like.setImageBitmap(R.drawable.ic_unlike);
+            holder.likeCounter.setText(String.valueOf(comment.getCountLikes()));
 
             StorageReference profilePhotoRef = storage.getReference().child("ProfilesPhotos").child(comment.idProfile).child("1.jpg");
             GlideApp.with(getApplicationContext())
