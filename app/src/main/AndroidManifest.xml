@@ -33,7 +33,7 @@
         </activity>
         <activity
             android:name=".AuthorizationActivities.SignUpEmailActivity"
-            android:label="@string/sign_up"
+            android:label="@string/title_sign_up"
             android:theme="@style/AppThemeWithActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -41,7 +41,7 @@
         </activity>
         <activity
             android:name=".AuthorizationActivities.SignInEmailActivity"
-            android:label="@string/sign_in"
+            android:label="@string/title_sign_in"
             android:theme="@style/AppThemeWithActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -85,6 +85,13 @@
         <activity
             android:name=".Test.TestActivity"
             android:theme="@style/AppThemeTest">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="zna.online.compass.MainActivity.MainMenuActivity" />
+        </activity>
+        <activity
+            android:name=".Test.TestResultActivity"
+            android:theme="@style/AppThemeDefault">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="zna.online.compass.MainActivity.MainMenuActivity" />

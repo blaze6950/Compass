@@ -18,14 +18,16 @@
     <style name="AppThemeTest" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Set AppCompat’s color theming attrs -->
         <item name="colorPrimary">@color/colorAccent</item>
-        <item name="colorPrimaryDark">@color/button_custom_pressed</item> //this is the statusbar color
+        <item name="colorPrimaryDark">@color/colorPrimaryText</item>
+        <!--<item name="colorPrimaryDark">@color/button_custom_pressed</item>-->
+        <item name="colorAccent">@color/colorAccent</item>
         <!-- Other attributes -->
     </style>
 
     <style name="AppThemeWithActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryText</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:actionBarStyle">@style/ThemeActionBar</item>
         <item name="android:windowActionBarOverlay">true</item>

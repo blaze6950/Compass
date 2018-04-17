@@ -3,9 +3,18 @@ package zna.online.compass.PlacesTab;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import zna.online.compass.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class PlacesModel implements Parcelable{
+import zna.online.compass.PlaceAndEvent;
+import zna.online.compass.R;
+import zna.online.compass.Test.TestResult;
+import zna.online.compass.Test.TestResultList;
+
+public class PlacesModel extends PlaceAndEvent implements Parcelable{
 
     public String id;
     public String notes;
@@ -19,12 +28,34 @@ public class PlacesModel implements Parcelable{
     public double rate;
     public double distance;
 
+    public TestResult getTestResult() {
+        return test;
+    }
+
+    private TestResult test;
+
     public String getDistance() {
         int buf = (int)((this.distance + 50) / 100);
         String res = String.valueOf((buf / 10.)) + " км";
         return res;
     }
 
+    @Override
+    public String getCoordinatesLon() {
+        return coordinatesLon;
+    }
+
+    @Override
+    public String getCoordinatesLat() {
+        return coordinatesLat;
+    }
+
+    @Override
+    public double getDistanceDouble() {
+        return distance;
+    }
+
+    @Override
     public void setDistance(double distance) {
 //        int buf = (int)(distance + 50) / 100;
 //        this.distance = buf / 10.;
@@ -98,6 +129,24 @@ public class PlacesModel implements Parcelable{
             colorRate = R.drawable.rate_good_mark;
         }
         return colorRate;
+    }
+
+    @Override
+    public void LoadTestResult(final TestResultList testResultList){
+        super.LoadTestResult(testResultList);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Places").child(id).child("test");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                test = dataSnapshot.getValue(TestResult.class);
+                testResultList.checkConfigTest();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override

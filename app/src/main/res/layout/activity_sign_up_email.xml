@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:text="Введите адресс Вашей электронной почты"
+                android:text="Введите адрес Вашей электронной почты"
                 android:textColor="@color/colorWhiteTextAndIcons" />
 
             <android.support.design.widget.TextInputLayout
@@ -131,7 +131,7 @@
                 android:layout_margin="15dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/button_custom_subscribe"
-                android:text="@string/title_sign_up"
+                android:text="@string/sign_up"
                 android:textColor="@color/colorWhiteTextAndIcons"
                 android:textStyle="bold" />
 

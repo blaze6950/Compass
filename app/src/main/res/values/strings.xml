@@ -133,10 +133,10 @@
     <string name="places_comment_send">Оставить отзыв</string>
     <string name="error_loading_photo">Ошибка загрузки главной фотографии! Попробуйте обновить</string>
     <string name="unsubscribe">Отписаться</string>
-    <string name="sign_up">Регистрация</string>
-    <string name="sign_in">Вход</string>
+    <string name="sign_up">Зарегистрироваться</string>
+    <string name="sign_in">Войти</string>
     <string name="email">Почта</string>
     <string name="password">Пароль</string>
-    <string name="dont_have_account">Еще не зарегестрированы?</string>
+    <string name="dont_have_account">Еще не зарегистрированы?</string>
     <string name="already_have_an_acc">Уже есть аккаунт?</string>
 </resources>

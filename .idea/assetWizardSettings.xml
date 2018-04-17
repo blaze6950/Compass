@@ -19,38 +19,9 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="E:\GoogleDrive\CompassProject\Oleg\screens\_source\share-96.png" />
-                                      <entry key="outputName" value="ic_main_menu_share" />
+                                      <entry key="imageAsset" value="E:\GoogleDrive\CompassProject\Oleg\screens\_source\checked-96.png" />
+                                      <entry key="outputName" value="ic_test_done" />
                                       <entry key="theme" value="HOLO_DARK" />
-                                      <entry key="themeColor" value="ff0700" />
-                                    </map>
-                                  </option>
-                                </PersistentState>
-                              </value>
-                            </entry>
-                            <entry key="notification">
-                              <value>
-                                <PersistentState>
-                                  <option name="children">
-                                    <map>
-                                      <entry key="clipartAsset">
-                                        <value>
-                                          <PersistentState>
-                                            <option name="values">
-                                              <map>
-                                                <entry key="url" value="jar:file:/C:/android/AndroidStudio/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_send_black_24dp.xml" />
-                                              </map>
-                                            </option>
-                                          </PersistentState>
-                                        </value>
-                                      </entry>
-                                    </map>
-                                  </option>
-                                  <option name="values">
-                                    <map>
-                                      <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="E:\GoogleDrive\CompassProject\Oleg\screens\_source\sent.png" />
-                                      <entry key="outputName" value="ic_send_comment" />
                                     </map>
                                   </option>
                                 </PersistentState>

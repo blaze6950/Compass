@@ -14,8 +14,10 @@
 
         <ImageView
             android:id="@+id/comment_image_profile"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
             android:visibility="visible"
@@ -44,6 +46,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="Comment"
+            android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/comment_image_profile"
             app:layout_constraintTop_toBottomOf="@+id/comment_name" />
 
@@ -51,10 +54,11 @@
             android:id="@+id/comment_like_counter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="10dp"
             android:text="0"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,9 +66,9 @@
             android:id="@+id/comment_like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="4dp"
             app:layout_constraintEnd_toStartOf="@+id/comment_like_counter"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_unlike" />
